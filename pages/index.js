@@ -1,65 +1,49 @@
 import Head from 'next/head'
+import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+
+        <title>Anderson Fernandes - Software Engineer</title>
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+      <Image
+        src="/img/profile.jpg"
+        alt="Profile Image"
+        width="150"
+        height="150"
+        className={styles['profile-img']}
+      />
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+      <h1>Anderson Fernandes</h1>
+      <h2>Software Engineer</h2>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+      <div className={styles.about}>
+        <p>I'm a Software Developer and Information Systems student at the Federal Institute of Alagoas.</p>
+        <p>Currently working at <a href="https://www.rdstation.com/" target="_BLANK">RD Station</a>.</p>
+      </div>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
+      <div className={styles.social}>
+        <a href="mailto:fernandesanderson14@gmail.com" title="fernandesanderson14@gmail.com" target="_blank">
+          <i className="icon-envelope"></i>
         </a>
-      </footer>
+
+        <a href="https://github.com/andersonfernandes/" title="Github" target="_blank">
+          <i className="icon-github"></i>
+        </a>
+
+        <a href="https://twitter.com/andersonf00" title="Twitter" target="_blank">
+          <i className="icon-twitter"></i>
+        </a>
+
+        <a href="https://br.linkedin.com/in/andersonfernandes12" title="Linkedin" target="_blank">
+          <i className="icon-linkedin"></i>
+        </a>
+      </div>
     </div>
   )
 }
