@@ -17,6 +17,7 @@ const Post = ({ content, data }) => {
   return (
     <div>
       <h1>{ data.title }</h1>
+      <h4>{ data.date }</h4>
 
       <ReactMarkdown
         escapeHtml={true}

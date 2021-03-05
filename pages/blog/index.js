@@ -41,8 +41,10 @@ export async function getStaticProps() {
     const rawPostContent = fs.readFileSync(path, {
       encoding: "utf-8",
     })
+    const postData = matter(rawPostContent).data
+    const slug = filename.split('.').slice(0, -1).join('.')
 
-    return matter(rawPostContent).data
+    return Object.assign(postData, { slug: slug })
   })
 
   return {
