@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import styles from './BlogLayout.module.scss'
 
 export default function BlogLayout({ meta, children }) {
   return (
@@ -10,7 +11,7 @@ export default function BlogLayout({ meta, children }) {
         <title>{ meta.title }</title>
       </Head>
 
-      <main>
+      <main className={ styles.container }>
         { children }
       </main>
     </>

@@ -1,6 +1,6 @@
 import ReactMarkdown from "react-markdown"
 
-import CodeBlock from '../../components/code_block'
+import CodeBlock from '../../components/CodeBlock'
 import { getAllPostSlugs, getPostBySlug } from "../../lib/posts_loader"
 
 export default function Post({ content, data }) { 

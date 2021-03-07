@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-import BlogLayout from '../../components/blog_layout'
+import BlogLayout from '../../components/BlogLayout'
 import { getAllPosts } from "../../lib/posts_loader"
 import getSiteMeta from "../../lib/site_metadata"
 
