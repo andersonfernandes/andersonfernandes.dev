@@ -1,7 +1,7 @@
 import Link from "next/link"
 
 import BlogLayout from '../../components/blog_layout'
-import {getAllPosts} from "../../lib/posts_loader"
+import { getAllPosts } from "../../lib/posts_loader"
 import getSiteMeta from "../../lib/site_metadata"
 
 export default function Blog({ meta, posts }) {
