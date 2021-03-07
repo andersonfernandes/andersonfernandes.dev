@@ -1,7 +1,9 @@
-import matter from "gray-matter"
 import ReactMarkdown from "react-markdown"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
-import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { darcula } from 'react-syntax-highlighter/dist/cjs/styles/prism'
+
+
+import { getAllPostSlugs, getPostBySlug } from "../../lib/posts_loader"
 
 const CodeBlock = ({ language, value }) => {
   return (
@@ -13,7 +15,7 @@ const CodeBlock = ({ language, value }) => {
   )
 }
 
-const Post = ({ content, data }) => {
+export default function Post({ content, data }) { 
   return (
     <div>
       <h1>{ data.title }</h1>
@@ -28,12 +30,23 @@ const Post = ({ content, data }) => {
   )
 }
 
-export default Post
+export async function getStaticProps({ params }) {
+  const post = getPostBySlug(params.slug)
+  return {
+    props: {
+      data: post.data,
+      content: post.content
+    },
+  }
+}
 
-Post.getInitialProps = async (context) => {
-  const { post } = context.query
-  const content = await import(`../../_posts/${post}.md`)
-  const data = matter(content.default)
-
-  return { ...data }
+export async function getStaticPaths() {
+  return {
+    paths: getAllPostSlugs().map((slug) => {
+      return {
+        params: { slug },
+      }
+    }),
+    fallback: false
+  };
 }
