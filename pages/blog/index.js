@@ -8,8 +8,6 @@ import getSiteMeta from "../../lib/site_metadata"
 export default function Blog({ meta, posts }) {
   return (
     <BlogLayout meta={ meta }>
-      <h1>Hello I'm a Blog</h1>
-
       <ul>
         {posts.map((post) => (
           <li key={post.slug}>

@@ -1,7 +1,12 @@
 import Head from 'next/head'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+
 import styles from './BlogLayout.module.scss'
 
 export default function BlogLayout({ meta, children }) {
+  const router = useRouter()
+
   return (
     <>
       <Head>
@@ -11,9 +16,28 @@ export default function BlogLayout({ meta, children }) {
         <title>{ meta.title }</title>
       </Head>
 
-      <main className={ styles.container }>
-        { children }
-      </main>
+      <div className={ styles.container }>
+        <header className={ styles.header }>
+          <h1>{ meta.title }</h1>
+          <h2>{ meta.description }</h2>
+        </header>
+
+        <nav className={ styles.navbar }>
+          { router.pathname != '/blog' && backButton() }
+        </nav>
+
+        <main>
+          { children }
+        </main>
+      </div>
     </>
+  )
+}
+
+function backButton() {
+  return (
+    <Link href={ '/blog' }>
+      <a>{ '< Back to all articles' }</a>
+    </Link>
   )
 }
