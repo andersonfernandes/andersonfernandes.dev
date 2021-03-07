@@ -1,11 +1,14 @@
 import ReactMarkdown from "react-markdown"
 
+import BlogLayout from "../../components/BlogLayout"
 import CodeBlock from '../../components/CodeBlock'
-import { getAllPostSlugs, getPostBySlug } from "../../lib/posts_loader"
 
-export default function Post({ content, data }) { 
+import { getAllPostSlugs, getPostBySlug } from "../../lib/posts_loader"
+import getSiteMeta from "../../lib/site_metadata"
+
+export default function Post({ meta, data, content }) { 
   return (
-    <div>
+    <BlogLayout meta={ meta }>
       <h1>{ data.title }</h1>
       <h4>{ data.date }</h4>
 
@@ -14,7 +17,7 @@ export default function Post({ content, data }) {
         source={content}
         renderers={{ code: CodeBlock }}
       />
-    </div>
+    </BlogLayout>
   )
 }
 
@@ -23,7 +26,8 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       data: post.data,
-      content: post.content
+      content: post.content,
+      meta: await getSiteMeta(),
     },
   }
 }
