@@ -32,7 +32,7 @@ export default Post
 
 Post.getInitialProps = async (context) => {
   const { post } = context.query
-  const content = await import(`../../blog_posts/${post}.md`)
+  const content = await import(`../../_posts/${post}.md`)
   const data = matter(content.default)
 
   return { ...data }

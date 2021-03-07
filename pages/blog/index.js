@@ -35,9 +35,9 @@ export async function getStaticProps() {
   const matter = require('gray-matter')
   const fs = require("fs")
 
-  const files = fs.readdirSync(`${process.cwd()}/blog_posts`, "utf-8")
+  const files = fs.readdirSync(`${process.cwd()}/_posts`, "utf-8")
   const posts = files.filter((fn) => fn.endsWith(".md")).map((filename) => {
-    const path = `${process.cwd()}/blog_posts/${filename}`
+    const path = `${process.cwd()}/_posts/${filename}`
     const rawPostContent = fs.readFileSync(path, {
       encoding: "utf-8",
     })
