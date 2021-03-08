@@ -1,10 +1,11 @@
 ---
 title: Hello World
-date: '2021-03-07'
+date: '2021-03-05'
 ---
 
-# Hello World
+**Hello! that's my first post**
 
+And this is a piece of code
 ```ruby
 a = [1, 2, 3]
 
