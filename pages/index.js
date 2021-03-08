@@ -1,12 +1,13 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.scss'
 
 export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
         <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 
         <title>Anderson Fernandes - Software Engineer</title>
       </Head>

@@ -1,0 +1,30 @@
+.posts {
+  display: block;
+
+  .post-list-item {
+    cursor: pointer;
+    margin: 20px 0;
+    display: inline;
+    float: left;
+    clear: left;
+
+    &:hover {
+      .title {
+        color: #222;
+        background-color: #CC241D;
+      }
+    }
+
+    .date {
+      font-weight: lighter;
+      font-size: 0.85rem;
+      margin-bottom: -5px;
+    }
+
+    .title {
+      color: #CC241D;
+      font-weight: bolder;
+      font-size: 1.5rem;
+    }
+  }
+}
