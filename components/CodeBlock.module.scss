@@ -1,0 +1,25 @@
+.code-container {
+  width: 75%;
+
+  .copy {
+    position: absolute;
+    background-color: #222;
+    right: 37.5%;
+    display: inline;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    margin: 5px;
+  }
+}
+
+
+@media all and (max-width: 29.75em) {
+  .code-container {
+    width: 100%;
+
+    .copy {
+      right: 0;
+    }
+  }
+}
