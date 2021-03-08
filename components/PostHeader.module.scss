@@ -1,14 +1,22 @@
 .post-header {
   margin-bottom: 15px;
 
-  .title {
-    font-weight: bolder;
-    font-size: 2.5rem;
-    margin-bottom: -10px;
-  }
-
   .date {
     font-weight: lighter;
     font-size: 0.85rem;
+  }
+
+  .title {
+    font-weight: bolder;
+    font-size: 2.5rem;
+  }
+}
+
+@media all and (max-width: 29.75em) {
+  .post-header {
+    .title {
+      font-size: 1.8em;
+      line-height: 1em;
+    }
   }
 }
