@@ -2,6 +2,7 @@ import ReactMarkdown from "react-markdown"
 
 import BlogLayout from "../../components/BlogLayout"
 import CodeBlock from '../../components/CodeBlock'
+import PostHeader from "../../components/PostHeader"
 
 import { getAllPostSlugs, getPostBySlug } from "../../lib/posts_loader"
 import getSiteMeta from "../../lib/site_metadata"
@@ -9,8 +10,7 @@ import getSiteMeta from "../../lib/site_metadata"
 export default function Post({ meta, data, content }) { 
   return (
     <BlogLayout meta={ meta }>
-      <h1>{ data.title }</h1>
-      <h4>{ data.date }</h4>
+      <PostHeader title={ data.title } date={ data.date } />
 
       <ReactMarkdown
         escapeHtml={true}

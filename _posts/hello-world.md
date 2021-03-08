@@ -1,9 +1,9 @@
 ---
 title: Hello World
-date: 03 de Março de 2021
+date: '2021-03-07'
 ---
 
-### Hello World
+# Hello World
 
 ```ruby
 a = [1, 2, 3]
