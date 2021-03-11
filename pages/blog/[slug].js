@@ -5,7 +5,6 @@ import CodeBlock from '../../components/CodeBlock'
 import PostHeader from "../../components/PostHeader"
 
 import { getAllPostSlugs, getPostBySlug } from "../../lib/posts_loader"
-import getSiteMeta from "../../lib/site_metadata"
 
 export default function Post({ meta, data, content }) { 
   return (
@@ -27,7 +26,10 @@ export async function getStaticProps({ params }) {
     props: {
       data: post.data,
       content: post.content,
-      meta: await getSiteMeta(),
+      meta: {
+        title: post.data.title,
+        description: post.data.description
+      },
     },
   }
 }
