@@ -14,12 +14,12 @@
 }
 
 
-@media all and (max-width: 29.75em) {
+@media all and (max-width: 1024px) {
   .code-container {
     width: 100%;
 
     .copy {
-      right: 0;
+      right: 5%;
     }
   }
 }
