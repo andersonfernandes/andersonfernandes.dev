@@ -5,10 +5,11 @@ import CodeBlock from '../../components/CodeBlock'
 import PostHeader from "../../components/PostHeader"
 
 import { getAllPostSlugs, getPostBySlug } from "../../lib/posts_loader"
+import getSiteMeta from "../../lib/site_metadata"
 
 export default function Post({ meta, data, content }) { 
   return (
-    <BlogLayout meta={ meta }>
+    <BlogLayout meta={ meta } pageMeta={ data }>
       <PostHeader title={ data.title } date={ data.date } />
 
       <ReactMarkdown
@@ -22,14 +23,12 @@ export default function Post({ meta, data, content }) {
 
 export async function getStaticProps({ params }) {
   const post = getPostBySlug(params.slug)
+
   return {
     props: {
       data: post.data,
       content: post.content,
-      meta: {
-        title: post.data.title,
-        description: post.data.description
-      },
+      meta: await getSiteMeta(),
     },
   }
 }

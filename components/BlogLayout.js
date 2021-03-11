@@ -4,16 +4,24 @@ import { useRouter } from 'next/router'
 
 import styles from './BlogLayout.module.scss'
 
-export default function BlogLayout({ meta, children }) {
+export default function BlogLayout({ meta, pageMeta, children }) {
   const router = useRouter()
+
+  let headTitle = meta.title
+  let headDescription = meta.description
+
+  if (pageMeta) {
+    headTitle = `${meta.title} - ${pageMeta.title}`
+    headDescription = pageMeta.description
+  }
 
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-        <meta name="Description" content={ meta.description }></meta>
-        <title>{ meta.title }</title>
+        <meta name="Description" content={ headDescription }></meta>
+        <title>{ headTitle }</title>
       </Head>
 
       <div className={ styles.container }>
