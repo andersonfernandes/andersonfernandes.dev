@@ -1,5 +1,6 @@
 ---
 title: Dockerizing a Rails app
+description: Step-by-step on how to get a rails application running on Docker
 date: '2021-03-07'
 ---
 
