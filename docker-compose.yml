@@ -4,8 +4,6 @@ services:
   web:
     build:
       context: .
-    environment:
-      - NEXT_PUBLIC_GA_ID=${NEXT_PUBLIC_GA_ID}
     ports:
       - "8001:3000"
     tty: true
