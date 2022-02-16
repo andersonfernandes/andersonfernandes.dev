@@ -25,7 +25,7 @@ export default function Home() {
 
       <div className={styles.about}>
         <p>I'm a Software Developer and Information Systems student at the Federal Institute of Alagoas.</p>
-        <p>Currently working at <a href="https://www.streetbees.com/" target="_BLANK">Streetbees</a>.</p>
+        <p>Currently working at <a href="https://clevertech.biz/" target="_BLANK">Clevertech</a>.</p>
       </div>
 
       <div className={styles.social}>
