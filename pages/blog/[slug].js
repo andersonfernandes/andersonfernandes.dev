@@ -7,17 +7,23 @@ import PostHeader from "../../components/PostHeader"
 import { getAllPostSlugs, getPostBySlug } from "../../lib/posts_loader"
 import getSiteMeta from "../../lib/site_metadata"
 
+import styles from '../../styles/Blog.module.scss'
+
 export default function Post({ meta, data, content }) { 
   return (
-    <BlogLayout meta={ meta } pageMeta={ data }>
-      <PostHeader title={ data.title } date={ data.date } updated={ data.updated } />
+    <>
+      <BlogLayout meta={ meta } pageMeta={ data }>
+        <PostHeader title={ data.title } date={ data.date } updated={ data.updated } />
 
-      <ReactMarkdown
-        escapeHtml={true}
-        source={content}
-        renderers={{ code: CodeBlock }}
-      />
-    </BlogLayout>
+        <ReactMarkdown
+          escapeHtml={true}
+          source={content}
+          renderers={{ code: CodeBlock }}
+        />
+      </BlogLayout>
+
+      <footer className={styles.footer}> <small>&copy; { currentYear() } Anderson Fernandes. All rights reserved</small> </footer> 
+    </>
   )
 }
 
@@ -42,4 +48,9 @@ export async function getStaticPaths() {
     }),
     fallback: false
   };
+}
+
+function currentYear() {
+  const today = new Date()
+  return today.getFullYear()
 }
