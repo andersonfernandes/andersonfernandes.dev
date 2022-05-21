@@ -45,6 +45,13 @@ export default function Home() {
           <i className="icon-linkedin"></i>
         </a>
       </div>
+
+      
+      <div className={styles.blog}>
+        <a href="/blog" title="Blog">
+          Blog
+        </a>
+      </div>
     </div>
   )
 }

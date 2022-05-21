@@ -31,7 +31,7 @@ export default function BlogLayout({ meta, pageMeta, children }) {
         </header>
 
         <nav className={ styles.navbar }>
-          { router.pathname != '/blog' && backButton() }
+          { router.pathname != '/blog' ? backButton() : mainPageButton() }
         </nav>
 
         <main>
@@ -46,6 +46,14 @@ function backButton() {
   return (
     <Link href={ '/blog' }>
       <a>{ '< Back to all articles' }</a>
+    </Link>
+  )
+}
+
+function mainPageButton() {
+  return (
+    <Link href={ '/' }>
+      <a>{ '< Back to main page' }</a>
     </Link>
   )
 }
