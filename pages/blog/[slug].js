@@ -10,7 +10,7 @@ import getSiteMeta from "../../lib/site_metadata"
 export default function Post({ meta, data, content }) { 
   return (
     <BlogLayout meta={ meta } pageMeta={ data }>
-      <PostHeader title={ data.title } date={ data.date } />
+      <PostHeader title={ data.title } date={ data.date } updated={ data.updated } />
 
       <ReactMarkdown
         escapeHtml={true}
