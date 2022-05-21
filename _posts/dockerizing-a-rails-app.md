@@ -2,6 +2,7 @@
 title: Dockerizing a Rails app
 description: Step-by-step on how to get a rails application running on Docker
 date: '2021-03-07'
+updated: '2022-05-21'
 ---
 
 Docker is a container solution developed by the [Docker Inc](https://www.docker.com/) and backed by the [open source community](https://forums.docker.com/). The idea of the docker solution is to provide a [container based tool](https://www.redhat.com/pt-br/topics/containers/whats-a-linux-container) with an image-based deployment model. You can create a complete development/production ready environment with a simple set of configuration and wrap it into an image that can be distributed on your team or to the community.
@@ -19,26 +20,18 @@ The folder structure that we will follow is based in creating a docker folder in
 The Dockerfile configures the image with all dependencies of the project.
 
 ```dockerfile
-ARG RUBY_VERSION=2.7.2
-FROM ruby:$RUBY_VERSION
-ARG DEBIAN_FRONTEND=noninteractive
+ARG RUBY_VERSION=3.1.2
 
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+FROM ruby:$RUBY_VERSION-alpine
 
-RUN apt-get update && apt-get install -y \
-      build-essential \
-      nodejs \
-      yarn \
-      locales \
-      netcat \
-      sudo \
-  && apt-get clean
+RUN apk add --update --no-cache \
+  bash \
+  build-base \
+  sudo \
+  libpq-dev \
+  tzdata
 
-ENV LANG C.UTF-8
-
-RUN mkdir -p /app && chown $USER:$USER /app
+RUN mkdir -p /app
 WORKDIR /app
 
 RUN gem install bundler
@@ -52,18 +45,18 @@ We are also installing the dependecies to run the application and preparing the 
 The compose file configures the services of the application using a YAML syntax.
 
 ```yaml
-version: '3.7'
-
 services:
-  postgres:
-    image: postgres:11
+  db:
+    image: postgres:13
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
     volumes:
       - postgres:/var/lib/postgresql/data
   web:
     build:
-      context: ./docker/
+      context: ./
+      args:
+        - RUBY_VERSION=3.1.2
     environment:
       - DATABASE_USERNAME=postgres
       - DATABASE_PASSWORD=
@@ -71,18 +64,16 @@ services:
       - DATABASE_PORT=5432
     depends_on:
       - postgres
-    entrypoint: docker/entrypoint.sh
+    entrypoint: ./entrypoint.sh
     ports:
-      - "3000:3000"
+      - 5000:3000
     volumes:
       - .:/app:cached
     tty: true
     stdin_open: true
 
 volumes:
-    gems:
     postgres:
-    rails_cache:
 ```
 
 With this config file we are defining two services:
@@ -98,14 +89,15 @@ With this config file we are defining two services:
 Here we just install all rails/node dependencies, configure the database and start the application server process.
 
 ```bash
-  #! /bin/bash
-  set -e
+#! /bin/bash
+set -e
 
-  bundle install
-  yarn install
+bundle install
 
-  bundle exec rails db:prepare
-  bundle exec rails server -p 3000 -b 0.0.0.0
+[ -e tmp/pids/server.pid ] && rm tmp/pids/server.pid
+
+bundle exec rails db:prepare
+bundle exec rails server -p 3000 -b 0.0.0.0
 ```
 
 ### Adding new dependencies
@@ -119,9 +111,9 @@ The [Docker Hub](https://hub.docker.com) platform is a public respository used b
 
 To run the application you can use the following commands:
 
-- `docker-compose up` will raise all services described on the compose file.
-- `docker-compose exec SERVICE_NAME COMMAND` will run the given command on the command line of the indicated service.
-- `docker-compose down` is going to stop all services.
+- `docker compose up` will raise all services described on the compose file.
+- `docker compose exec SERVICE_NAME COMMAND` will run the given command on the command line of the indicated service.
+- `docker compose down` is going to stop all services.
 
 Now you have a fully functional and ready to use configuration to your project. I used a Ruby on Rails application as example, but the concepts can be applied to any stack you use, you just need to adjust the Dockerfile to your project dependencies and configure the services on the compose file.
 
