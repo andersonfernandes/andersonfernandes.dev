@@ -63,7 +63,7 @@ services:
       - DATABASE_HOST=postgres
       - DATABASE_PORT=5432
     depends_on:
-      - postgres
+      - db
     entrypoint: ./entrypoint.sh
     ports:
       - 5000:3000
