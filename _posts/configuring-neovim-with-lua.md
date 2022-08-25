@@ -1,7 +1,7 @@
 ---
-title: NeoVim 101
+title: Configuring NeoVim with Lua
 description:
-date: '2022-08-28'
+date: '2022-08-26'
 updated:
 ---
 
