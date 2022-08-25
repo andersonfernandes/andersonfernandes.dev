@@ -67,7 +67,7 @@ vim.opt.tabstop = 2
 vim.g.mapleader = ' '
 ```
 
-With this piece of code we are setting some global configs like enabling line numnbers to be shown, configuring indentation and setting the mapleader to `<space>` (I will explain more about it in the remaps section).
+With this piece of code we are setting some global configs like enabling line numnbers to be shown, configuring indentation and setting the mapleader to `<space>`.
 
 Now we need to source the `set.lua` file into the root `init.lua` creating the file `lua/custom/init.lua`:
 
@@ -218,11 +218,63 @@ We also need to add some post config at the `after/plugins` folder:
 
 ## Remaps
 
-- ...
-- add ref to the creator of keymap.lua (https://github.com/ThePrimeagen/.dotfiles/blob/master/nvim/.config/nvim/lua/theprimeagen/keymap.lua)
+Another key point of building your nvim config is customizing your keybindings. To help on the remapping process we are going to reuse [this snnippet](https://github.com/ThePrimeagen/.dotfiles/blob/master/nvim/.config/nvim/lua/theprimeagen/keymap.lua) fromt theprimeagen dotfiles. Let's place it at the file `lua/custom/keymap.lua`:
+
+```lua
+local M = {}
+
+local function bind(op, outer_opts)
+    outer_opts = outer_opts or { noremap = true }
+
+    return function(lhs, rhs, opts)
+        opts = vim.tbl_extend("force",
+            outer_opts,
+            opts or {}
+        )
+
+        vim.api.nvim_set_keymap(op, lhs, rhs, opts)
+    end
+end
+
+M.nmap = bind("n", {noremap = false})
+M.nnoremap = bind("n")
+M.vnoremap = bind("v")
+M.xnoremap = bind("x")
+M.inoremap = bind("i")
+
+return M
+```
+
+We are defining a set of functions to support all kinds of vim mappings.
+
+Now let's create the `lua/custom/remap.lua` with some cool bindings:
+
+```lua
+local keymap = require("custom.keymap")
+local nnoremap = keymap.nnoremap
+local vnoremap = keymap.vnoremap
+local inoremap = keymap.inoremap
+local xnoremap = keymap.xnoremap
+local nmap = keymap.nmap
+
+nnoremap("Q", "<nop>")
+nmap('<esc>', ':noh <CR>')
+
+-- Add custom mappings here
+```
+
+And again, update the file `lua/custom/remap.lua` with require to the remap module:
+
+```lua
+require("custom.set")
+require("custom.plugins")
+require("custom.remap")
+```
 
 ## Wrapping up
 
-- Show my dotfiles
-- Kudos to ThePrimeagen on migrating to lua
+Now you have an NeoVim installation configured and ready to start coding.
 
+At my [personal dotfiles](https://github.com/andersonfernandes/dotfiles/tree/main/config/nvim) I dig a little bit deeper into adding more plugins and remaps, so feel free to clone the repoget some customization insights.
+
+Also check out [ThePrimeagen youtube channnel](https://www.youtube.com/c/ThePrimeagen) to learn more about vim and programming in general.
