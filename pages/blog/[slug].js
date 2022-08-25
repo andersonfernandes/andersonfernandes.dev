@@ -18,6 +18,7 @@ export default function Post({ meta, data, content }) {
         <ReactMarkdown
           escapeHtml={true}
           source={content}
+          linkTarget="_blank"
           renderers={{ code: CodeBlock }}
         />
       </BlogLayout>
