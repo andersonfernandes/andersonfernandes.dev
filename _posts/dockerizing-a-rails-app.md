@@ -60,7 +60,7 @@ services:
     environment:
       - DATABASE_USERNAME=postgres
       - DATABASE_PASSWORD=
-      - DATABASE_HOST=postgres
+      - DATABASE_HOST=db
       - DATABASE_PORT=5432
     depends_on:
       - db

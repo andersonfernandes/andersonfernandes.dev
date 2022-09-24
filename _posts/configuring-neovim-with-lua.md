@@ -1,13 +1,13 @@
 ---
 title: Configuring NeoVim with Lua
 description:
-date: '2022-08-26'
+date: '2022-09-23'
 updated:
 ---
 
 In this article I'm going to show how you can go from a fresh install of NeoVim (**nvim** as shorthand) to a ready-for-code setup.
 
-First of all you need to have nvim installed, check out their [installation guide](https://github.com/neovim/neovim/wiki/Installing-Neovim) on Github for the steps. Since the project is growing fast, consider installing the latest stable version to get the new features.
+First of all you need to have nvim installed, check out their [installation guide](https://github.com/neovim/neovim/wiki/Installing-Neovim) on Github for the steps. Since the project is growing fast, consider installing the latest **stable** version to get the new features.
 
 ## A bit of context
 
@@ -34,7 +34,7 @@ Here is the files structure that we are going to use:
 
 The file `init.lua` is our startup file, the whole config that we are going to do will be sourced from here.
 
-At the folder `lua` will be placed our .lua files and modules. Each subfolders can have an `init.lua` file that will be used as an startpoint of the module (like an `index.html`).
+At the folder `lua` will be placed our .lua files and modules. Each subfolder can have an `init.lua` file that will be used as an startpoint of the module (like an `index.html`).
 
 We are going to create one module called `custom`, containing all of our main config files, like keymaps and plugins management.
 
@@ -42,7 +42,7 @@ The folder `after/plugin` will contain files that will be automatically sourced 
 
 ## NeoVim 🤝 Lua
 
-NeoVim includes support to be configured using Lua, you can require any fie or module placed under the `lua` folder. The `vim` module is automatically required and available globally at any lua file. Check the [nvim docs](https://neovim.io/doc/user/lua.html) for a full list of functions and modules that can be used.
+NeoVim include support to be configured using Lua, you can require any fie or module placed under the `lua` folder. The `vim` module is automatically required and available globally at any lua file. Check the [nvim docs](https://neovim.io/doc/user/lua.html) for a full list of functions and modules that can be used.
 
 With that in mind lets add some initial config creating the `lua/custom/set.lua`:
 
@@ -83,9 +83,9 @@ require("custom")
 
 ## Plugins
 
-Since nvim is basically a text editor, we do not have features such code completion or an git integration.
+Since nvim is basically a text editor, we do not have features such code completion or an git integration out of the box.
 
-To get those features working at our editor we can use some plugins. We are going to use [packer.nvim](https://github.com/wbthomason/packer.nvim) to help us install and update our plugins.
+To get those features working at our editor we can use some plugins. We are going to use [packer.nvim](https://github.com/wbthomason/packer.nvim) to help us manage our plugins.
 
 The main plugins we are going to install are:
 
@@ -218,7 +218,7 @@ We also need to add some post config at the `after/plugins` folder:
 
 ## Remaps
 
-Another key point of building your nvim config is customizing your keybindings. To help on the remapping process we are going to reuse [this snnippet](https://github.com/ThePrimeagen/.dotfiles/blob/master/nvim/.config/nvim/lua/theprimeagen/keymap.lua) fromt theprimeagen dotfiles. Let's place it at the file `lua/custom/keymap.lua`:
+Another key point of building your nvim config is customizing the keybindings. To help on the remapping process we are going to reuse [this snnippet](https://github.com/ThePrimeagen/.dotfiles/blob/master/nvim/.config/nvim/lua/theprimeagen/keymap.lua) from theprimeagen dotfiles. Let's place it at the file `lua/custom/keymap.lua`:
 
 ```lua
 local M = {}
@@ -247,7 +247,7 @@ return M
 
 We are defining a set of functions to support all kinds of vim mappings.
 
-Now let's create the `lua/custom/remap.lua` with some cool bindings:
+Now let's create the `lua/custom/remap.lua` with some usefull bindings:
 
 ```lua
 local keymap = require("custom.keymap")
@@ -275,6 +275,6 @@ require("custom.remap")
 
 Now you have an NeoVim installation configured and ready to start coding.
 
-At my [personal dotfiles](https://github.com/andersonfernandes/dotfiles/tree/main/config/nvim) I dig a little bit deeper into adding more plugins and remaps, so feel free to clone the repoget some customization insights.
+At my [personal dotfiles](https://github.com/andersonfernandes/dotfiles/tree/main/config/nvim) I dig a little bit deeper into adding more plugins and remaps, so feel free to clone the repo and get some customization insights.
 
 Also check out [ThePrimeagen youtube channnel](https://www.youtube.com/c/ThePrimeagen) to learn more about vim and programming in general.
