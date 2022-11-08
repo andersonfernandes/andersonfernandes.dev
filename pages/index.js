@@ -37,10 +37,6 @@ export default function Home() {
           <i className="icon-github"></i>
         </a>
 
-        <a href="https://twitter.com/andersonf00" title="Twitter" target="_blank">
-          <i className="icon-twitter"></i>
-        </a>
-
         <a href="https://br.linkedin.com/in/andersonfernandes12" title="Linkedin" target="_blank">
           <i className="icon-linkedin"></i>
         </a>
