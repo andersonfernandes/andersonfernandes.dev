@@ -24,6 +24,11 @@ export default class MyDocument extends Document {
           `,
             }}
           />
+
+          <link
+            href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
+            rel="stylesheet"
+          />
         </Head>
         <body>
           <Main />
