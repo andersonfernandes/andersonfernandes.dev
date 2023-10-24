@@ -1,10 +1,10 @@
-export interface PostRawData {
+export interface PostMeta {
   title: string;
   description: string;
   date: string;
   updated: string;
 }
 
-export interface Post extends PostRawData {
+export interface Post extends PostMeta {
   slug: string;
 }

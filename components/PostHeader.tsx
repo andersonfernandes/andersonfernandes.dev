@@ -1,7 +1,15 @@
 import { formatedPublishedAt } from "../lib/dates_helper";
 import styles from "./PostHeader.module.scss";
 
-export default function PostHeader({ title, date, updated }) {
+export default function PostHeader({
+  title,
+  date,
+  updated,
+}: {
+  title: string;
+  date: string;
+  updated: string;
+}) {
   return (
     <div className={styles["post-header"]}>
       <div className={styles.date}>

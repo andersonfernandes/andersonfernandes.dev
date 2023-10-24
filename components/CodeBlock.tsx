@@ -6,18 +6,16 @@ import styles from "./CodeBlock.module.scss";
 const NO_COPY = "--no-copy";
 const NO_LINES = "--no-lines";
 
-const copyCode = (event, value) => {
-  const selection = document.createElement("textarea");
-  selection.value = value;
-  document.body.appendChild(selection);
-  selection.select();
-  document.execCommand("copy");
-  document.body.removeChild(selection);
+const copyCode = async (
+  event: React.MouseEvent<HTMLDivElement>,
+  value: string
+) => {
+  await navigator.clipboard.writeText(value);
 
-  event.target.innerHTML = "Copied!";
-
+  const target = event.target as HTMLDivElement;
+  target.innerHTML = "Copied!";
   setTimeout(() => {
-    event.target.innerHTML = "Copy";
+    target.innerHTML = "Copy";
   }, 1000);
 };
 
@@ -50,8 +48,6 @@ export default function CodeBlock({ children, className, node, ...rest }) {
       </SyntaxHighlighter>
     </div>
   ) : (
-    <code {...rest} inline="false" className={className}>
-      {children}
-    </code>
+    <code className={className}>{children}</code>
   );
 }

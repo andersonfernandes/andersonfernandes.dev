@@ -7,8 +7,14 @@ import { getAllPosts } from "../../lib/posts_loader";
 import getSiteMeta from "../../lib/site_metadata";
 
 import styles from "../../styles/Blog.module.scss";
+import { Post, PostMeta } from "../../types/post";
 
-export default function Blog({ meta, posts }) {
+type BlogProps = {
+  meta: PostMeta;
+  posts: Post[];
+};
+
+export default function Blog({ meta, posts }: BlogProps) {
   return (
     <BlogLayout meta={meta}>
       <div className={styles.posts}>

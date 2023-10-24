@@ -1,10 +1,23 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { ReactNode } from "react";
+import { BlogMeta } from "../lib/site_metadata";
+import { PostMeta } from "../types/post";
 
 import styles from "./BlogLayout.module.scss";
 
-export default function BlogLayout({ meta, pageMeta, children }) {
+type BlogLayoutProps = {
+  meta: PostMeta;
+  pageMeta?: BlogMeta;
+  children: ReactNode | ReactNode[];
+};
+
+export default function BlogLayout({
+  meta,
+  pageMeta,
+  children,
+}: BlogLayoutProps) {
   const router = useRouter();
 
   let headTitle = meta.title;
