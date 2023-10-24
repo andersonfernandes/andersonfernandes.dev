@@ -2,9 +2,9 @@ import Link from "next/link";
 
 import BlogLayout from "../../components/BlogLayout";
 
-import { formatedPublishedAt } from "../../lib/dates_helper";
-import { getAllPosts } from "../../lib/posts_loader";
-import getSiteMeta from "../../lib/site_metadata";
+import { formatedPublishedAt } from "../../lib/dates";
+import getSiteMetadata from "../../lib/getSiteMetadata";
+import { getAllPosts } from "../../lib/posts";
 
 import styles from "../../styles/Blog.module.scss";
 import { Post, PostMeta } from "../../types/post";
@@ -39,7 +39,7 @@ export async function getStaticProps() {
   return {
     props: {
       posts: getAllPosts(),
-      meta: await getSiteMeta(),
+      meta: await getSiteMetadata(),
     },
   };
 }

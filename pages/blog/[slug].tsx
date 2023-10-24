@@ -3,9 +3,9 @@ import Markdown from "react-markdown";
 import BlogLayout from "../../components/BlogLayout";
 import CodeBlock from "../../components/CodeBlock";
 import PostHeader from "../../components/PostHeader";
+import getSiteMetadata from "../../lib/getSiteMetadata";
 
-import { getAllPostSlugs, getPostBySlug } from "../../lib/posts_loader";
-import getSiteMeta from "../../lib/site_metadata";
+import { getAllPostSlugs, getPostBySlug } from "../../lib/posts";
 
 import styles from "../../styles/Blog.module.scss";
 
@@ -41,7 +41,7 @@ export async function getStaticProps({ params }) {
     props: {
       data: post.data,
       content: post.content,
-      meta: await getSiteMeta(),
+      meta: await getSiteMetadata(),
     },
   };
 }

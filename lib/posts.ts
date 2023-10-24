@@ -1,7 +1,7 @@
 import fs from "fs";
 import matter, { GrayMatterFile } from "gray-matter";
 import { Post } from "../types/post";
-import { publishedAt } from "./dates_helper";
+import { publishedAt } from "./dates";
 
 const filesBasePath = `${process.cwd()}/_posts`;
 

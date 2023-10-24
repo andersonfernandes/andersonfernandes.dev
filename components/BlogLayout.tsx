@@ -2,14 +2,14 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
-import { BlogMeta } from "../lib/site_metadata";
+import { SiteMetadata } from "../lib/getSiteMetadata";
 import { PostMeta } from "../types/post";
 
 import styles from "./BlogLayout.module.scss";
 
 type BlogLayoutProps = {
   meta: PostMeta;
-  pageMeta?: BlogMeta;
+  pageMeta?: SiteMetadata;
   children: ReactNode | ReactNode[];
 };
 

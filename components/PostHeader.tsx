@@ -1,4 +1,4 @@
-import { formatedPublishedAt } from "../lib/dates_helper";
+import { formatedPublishedAt } from "../lib/dates";
 import styles from "./PostHeader.module.scss";
 
 export default function PostHeader({
