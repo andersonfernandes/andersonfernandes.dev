@@ -1,4 +1,4 @@
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 
 import BlogLayout from "../../components/BlogLayout";
 import CodeBlock from "../../components/CodeBlock";
@@ -19,11 +19,9 @@ export default function Post({ meta, data, content }) {
           updated={data.updated}
         />
 
-        <ReactMarkdown
-          children={content}
-          linkTarget="_blank"
-          components={{ code: CodeBlock }}
-        />
+        <Markdown linkTarget="_blank" components={{ code: CodeBlock }}>
+          {content}
+        </Markdown>
       </BlogLayout>
 
       <footer className={styles.footer}>

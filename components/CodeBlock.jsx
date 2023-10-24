@@ -29,22 +29,29 @@ const CopyButton = ({ value }) => {
   );
 };
 
-export default function CodeBlock({ language, value, node }) {
+export default function CodeBlock({ children, className, node, ...rest }) {
   const meta = node.meta || "";
   const copyEnabled = !meta.includes(NO_COPY);
   const linesEnabled = !meta.includes(NO_LINES);
+  const languageMatch = /language-(\w+)/.exec(className || "");
 
-  return (
+  return languageMatch ? (
     <div className={styles["code-container"]}>
-      {copyEnabled && <CopyButton value={value} />}
+      {copyEnabled && <CopyButton value={children[0]} />}
 
       <SyntaxHighlighter
+        {...rest}
+        inline="false"
         showLineNumbers={linesEnabled}
-        language={language}
+        language={languageMatch[1]}
         style={darcula}
       >
-        {value}
+        {children}
       </SyntaxHighlighter>
     </div>
+  ) : (
+    <code {...rest} inline="false" className={className}>
+      {children}
+    </code>
   );
 }
