@@ -2,31 +2,25 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
-import { SiteMetadata } from "../lib/getSiteMetadata";
-import { PostMeta } from "../types/post";
+import { SiteMetadata } from "../../lib/getSiteMetadata";
+import { PostMeta } from "../../types/post";
 
 import styles from "./BlogLayout.module.scss";
 
-type BlogLayoutProps = {
+type Props = {
   meta: PostMeta;
   pageMeta?: SiteMetadata;
   children: ReactNode | ReactNode[];
 };
 
-export default function BlogLayout({
-  meta,
-  pageMeta,
-  children,
-}: BlogLayoutProps) {
+const BackButton = () => <Link href={"/blog"}>{"< Back to all articles"}</Link>;
+const MainPageButton = () => <Link href={"/"}>{"< Back to main page"}</Link>;
+
+export default function BlogLayout({ meta, pageMeta, children }: Props) {
   const router = useRouter();
 
-  let headTitle = meta.title;
-  let headDescription = meta.description;
-
-  if (pageMeta) {
-    headTitle = `${meta.title} - ${pageMeta.title}`;
-    headDescription = pageMeta.description;
-  }
+  const headTitle = pageMeta ? `${meta.title} - ${pageMeta.title}` : meta.title;
+  const headDescription = pageMeta ? pageMeta.description : meta.description;
 
   return (
     <>
@@ -44,19 +38,11 @@ export default function BlogLayout({
         </header>
 
         <nav className={styles.navbar}>
-          {router.pathname != "/blog" ? backButton() : mainPageButton()}
+          {router.pathname != "/blog" ? <BackButton /> : <MainPageButton />}
         </nav>
 
         <main>{children}</main>
       </div>
     </>
   );
-}
-
-function backButton() {
-  return <Link href={"/blog"}>{"< Back to all articles"}</Link>;
-}
-
-function mainPageButton() {
-  return <Link href={"/"}>{"< Back to main page"}</Link>;
 }

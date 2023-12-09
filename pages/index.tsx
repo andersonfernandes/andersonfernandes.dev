@@ -1,7 +1,39 @@
+import { ReactNode } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa6";
+
 import styles from "../styles/Home.module.scss";
+
+type SocialLinkProps = {
+  href: string;
+  title: string;
+  icon: ReactNode;
+};
+const SocialLink = ({ href, title, icon }: SocialLinkProps) => (
+  <Link href={href} title={title} target="_blank">
+    {icon}
+  </Link>
+);
+
+const socialLinks: SocialLinkProps[] = [
+  {
+    href: "mailto:fernandesanderson14@gmail.com",
+    title: "fernandesanderson14@gmail.com",
+    icon: <FaEnvelope />,
+  },
+  {
+    href: "https://github.com/andersonfernandes/",
+    title: "Github",
+    icon: <FaGithub />,
+  },
+  {
+    href: "https://br.linkedin.com/in/andersonfernandes12",
+    title: "Linkedin",
+    icon: <FaLinkedin />,
+  },
+];
 
 export default function Home() {
   return (
@@ -36,29 +68,9 @@ export default function Home() {
       </div>
 
       <div className={styles.social}>
-        <Link
-          href="mailto:fernandesanderson14@gmail.com"
-          title="fernandesanderson14@gmail.com"
-          target="_blank"
-        >
-          <i className="icon-envelope"></i>
-        </Link>
-
-        <Link
-          href="https://github.com/andersonfernandes/"
-          title="Github"
-          target="_blank"
-        >
-          <i className="icon-github"></i>
-        </Link>
-
-        <Link
-          href="https://br.linkedin.com/in/andersonfernandes12"
-          title="Linkedin"
-          target="_blank"
-        >
-          <i className="icon-linkedin"></i>
-        </Link>
+        {socialLinks.map((props) => (
+          <SocialLink key={props.title} {...props} />
+        ))}
       </div>
 
       <div className={styles.blog}>
