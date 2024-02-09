@@ -55,13 +55,13 @@ export default function Home() {
 
       <div className={styles.about}>
         <p>
-          I'm a Software Developer and Information Systems student at the
+          I'm a Software Engineer and Information Systems student at the
           Federal Institute of Alagoas.
         </p>
         <p>
           Currently working at{" "}
-          <Link href="https://clevertech.biz/" target="_BLANK">
-            Clevertech
+          <Link href="https://lumenalta.com/" target="_BLANK">
+            Lumenalta
           </Link>
           .
         </p>
