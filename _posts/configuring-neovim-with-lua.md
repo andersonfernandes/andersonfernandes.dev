@@ -1,7 +1,7 @@
 ---
 title: Configuring NeoVim with Lua
 description:
-date: '2022-09-23'
+date: "2022-09-23"
 updated:
 ---
 
@@ -93,7 +93,7 @@ The main plugins we are going to install are:
 - [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim): help us to configure the statusline.
 - [kyazdani42/nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua): a file explorer.
 - [junegunn/fzf.vim](https://github.com/junegunn/fzf.vim): integration between the [fzf](https://github.com/junegunn/fzf) command line tool with nvim. It will help us finding files and text into our projects(and also much more).
-- [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive): a git wrapper full of cool features. 
+- [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive): a git wrapper full of cool features.
 - [mhinz/vim-signify](https://github.com/mhinz/vim-signify): show git diff on the sign column of the editor.
 - [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim): an extension host that will handle the management of our language servers and help us on the code completion and much more.
 - [dense-analysis/ale](https://github.com/dense-analysis/ale): a lint engine, we can make it [communicate with coc.nvim](https://github.com/dense-analysis/ale#5iii-how-can-i-use-ale-and-cocnvim-together)
@@ -132,6 +132,7 @@ require("custom.plugins")
 We also need to add some post config at the `after/plugins` folder:
 
 - Configuring the colorscheme at `after/plugin/color.lua`
+
   ```lua
   vim.cmd("syntax enable")
   vim.opt.background = "dark"
@@ -140,6 +141,7 @@ We also need to add some post config at the `after/plugins` folder:
   ```
 
 - Setting up coc.nvim at `after/plugin/completion.lua`
+
   ```lua
   -- Add your extensions here.
   -- Check the list of the available ones here: https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions
@@ -165,6 +167,7 @@ We also need to add some post config at the `after/plugins` folder:
   ```
 
 - Customizing fzf interface at `after/plugin/finder.lua`
+
   ```lua
   vim.g.fzf_layout = {
     window = {
@@ -177,6 +180,7 @@ We also need to add some post config at the `after/plugins` folder:
   ```
 
 - Setup lualine at `after/plugin/lines.lua`
+
   ```lua
   require('lualine').setup {
     options = {

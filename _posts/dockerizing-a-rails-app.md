@@ -1,8 +1,8 @@
 ---
 title: Dockerizing a Rails app
 description: Step-by-step on how to get a rails application running on Docker
-date: '2021-03-07'
-updated: '2022-05-26'
+date: "2021-03-07"
+updated: "2022-05-26"
 ---
 
 Docker is a container solution developed by the [Docker Inc](https://www.docker.com/) and backed by the [open source community](https://forums.docker.com/). The idea of the docker solution is to provide a [container based tool](https://www.redhat.com/pt-br/topics/containers/whats-a-linux-container) with an image-based deployment model. You can create a complete development/production ready environment with a simple set of configuration and wrap it into an image that can be distributed on your team or to the community.
@@ -73,7 +73,7 @@ services:
     stdin_open: true
 
 volumes:
-    postgres:
+  postgres:
 ```
 
 With this config file we are defining two services:
@@ -116,4 +116,3 @@ To run the application you can use the following commands:
 - `docker compose down` is going to stop all services.
 
 Now you have a fully functional and ready to use configuration to your project. I used a Ruby on Rails application as example, but the concepts can be applied to any stack you use, you just need to adjust the Dockerfile to your project dependencies and configure the services on the compose file.
-
