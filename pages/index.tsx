@@ -43,7 +43,7 @@ export default function Home() {
       </Head>
 
       <Image
-        src="/img/profile.jpg"
+        src="/img/profile.png"
         alt="Profile Image"
         width="150"
         height="150"
@@ -55,8 +55,8 @@ export default function Home() {
 
       <div className={styles.about}>
         <p>
-          I'm a Software Engineer and Information Systems student at the
-          Federal Institute of Alagoas.
+          I'm a Software Engineer and Information Systems student at the Federal
+          Institute of Alagoas.
         </p>
         <p>
           Currently working at{" "}
